@@ -1,0 +1,39 @@
+[gd_scene load_steps=9 format=3 uid="uid://h27pshcdlrxa"]
+
+[ext_resource type="Script" path="res://Code/Player/player.gd" id="1_fiokt"]
+[ext_resource type="PackedScene" uid="uid://c4q387f4bkpg1" path="res://Code/GenericStatemachine/generic_state_manager.tscn" id="2_mbbaj"]
+[ext_resource type="PackedScene" uid="uid://cvccvaptwq5aw" path="res://Code/Player/camera_rig.tscn" id="2_tx8l0"]
+[ext_resource type="PackedScene" path="res://Code/InputBuffer/input_buffer_manager.tscn" id="3_dhj67"]
+[ext_resource type="Resource" uid="uid://cej30uakpf7cp" path="res://Code/Player/stateMachine.tres" id="4_lnx07"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_fqy3m"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_y0n4i"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ybubf"]
+
+[node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_fiokt")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_fqy3m")
+
+[node name="BodyPivot" type="Node3D" parent="."]
+
+[node name="Body" type="MeshInstance3D" parent="BodyPivot"]
+mesh = SubResource("CapsuleMesh_y0n4i")
+
+[node name="Eyes" type="MeshInstance3D" parent="BodyPivot"]
+transform = Transform3D(0.351579, 0, 0, 0, 0.174088, 0, 0, 0, 0.594642, 0.372394, 0.538194, 0)
+mesh = SubResource("BoxMesh_ybubf")
+
+[node name="CameraRig" parent="." instance=ExtResource("2_tx8l0")]
+transform = Transform3D(-4.37114e-08, 0, -1, 0, 1, 0, 1, 0, -4.37114e-08, 0, 0.5, 0)
+maxVerticalAngle = 40.0
+minVerticalAngle = -40.0
+
+[node name="GenericStateManager" parent="." instance=ExtResource("2_mbbaj")]
+stateMachineFilePath = "res://Data/StateMachines/Player.json"
+stateMachineResource = ExtResource("4_lnx07")
+
+[node name="InputBufferManager" parent="." instance=ExtResource("3_dhj67")]

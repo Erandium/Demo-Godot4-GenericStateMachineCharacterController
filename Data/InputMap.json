@@ -1,0 +1,159 @@
+{
+	"inputs": {
+		"camera_movement_down": [
+			{
+				"inputCode": 4194322,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 1,
+				"inputDirection": 1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"camera_movement_left": [
+			{
+				"inputCode": 4194319,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 0,
+				"inputDirection": -1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"camera_movement_right": [
+			{
+				"inputCode": 4194321,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 0,
+				"inputDirection": 1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"camera_movement_up": [
+			{
+				"inputCode": 4194320,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 1,
+				"inputDirection": -1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"camera_toggle": [
+			{
+				"inputCode": 71,
+				"inputType": "keyboard"
+			},
+			{
+				"inputCode": 11,
+				"inputType": "joypadButton"
+			}
+		],
+		"mouse_toggle": [
+			{
+				"inputCode": 84,
+				"inputType": "keyboard"
+			},
+			{
+				"inputCode": 12,
+				"inputType": "joypadButton"
+			}
+		],
+		"player_movement_back": [
+			{
+				"inputCode": 83,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 3,
+				"inputDirection": 1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"player_movement_dash": [
+			{
+				"inputCode": 4194306,
+				"inputType": "keyboard"
+			},
+			{
+
+			}
+		],
+		"player_movement_down": [
+			{
+				"inputCode": 4194325,
+				"inputType": "keyboard"
+			},
+			{
+				"inputCode": 2,
+				"inputType": "joypadButton"
+			}
+		],
+		"player_movement_front": [
+			{
+				"inputCode": 90,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 3,
+				"inputDirection": -1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"player_movement_jump": [
+			{
+				"inputCode": 32,
+				"inputType": "keyboard"
+			},
+			{
+				"inputCode": 3,
+				"inputType": "joypadButton"
+			}
+		],
+		"player_movement_left": [
+			{
+				"inputCode": 81,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 2,
+				"inputDirection": -1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"player_movement_right": [
+			{
+				"inputCode": 68,
+				"inputType": "keyboard"
+			},
+			{
+				"inputAxis": 2,
+				"inputDirection": 1,
+				"inputType": "joypadAxis"
+			}
+		],
+		"player_movement_up": [
+			{
+				"inputCode": 32,
+				"inputType": "keyboard"
+			},
+			{
+				"inputCode": 3,
+				"inputType": "joypadButton"
+			}
+		]
+	},
+	"sensibility": {
+		"cameraJoysticHorizontal": 1,
+		"cameraJoysticVertical": 1,
+		"mouseHorizontal": 1,
+		"mouseVertical": 1,
+		"movementJoysticHorizontal": 1,
+		"movementJoysticVertical": 1
+	}
+}

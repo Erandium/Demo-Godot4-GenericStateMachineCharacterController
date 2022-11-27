@@ -1,0 +1,46 @@
+[gd_scene load_steps=2 format=3 uid="uid://ciu684d8cknlp"]
+
+[ext_resource type="Script" path="res://Code/Input/InputMenu/input_mapping_line.gd" id="1_x7b3b"]
+
+[node name="InputMappingLine" type="HBoxContainer"]
+custom_minimum_size = Vector2(0, 36)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+script = ExtResource("1_x7b3b")
+
+[node name="ActionName" type="Label" parent="."]
+layout_mode = 2
+offset_top = 312.0
+offset_right = 490.0
+offset_bottom = 335.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 3.0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="Slot1" type="Button" parent="."]
+layout_mode = 2
+offset_left = 494.0
+offset_right = 821.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_mode = 0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="Slot2" type="Button" parent="."]
+layout_mode = 2
+offset_left = 825.0
+offset_right = 1152.0
+offset_bottom = 648.0
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 2.0
+focus_mode = 0
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[connection signal="pressed" from="Slot1" to="." method="_on_slot_1_pressed"]
+[connection signal="pressed" from="Slot2" to="." method="_on_slot_2_pressed"]

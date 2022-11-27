@@ -1,0 +1,36 @@
+[gd_scene load_steps=2 format=3 uid="uid://55sw2qf55vpp"]
+
+[ext_resource type="Script" path="res://Code/Input/InputMenu/input_sensibility_menu.gd" id="1_3ruyx"]
+
+[node name="InputSensibilityMenu" type="Control"]
+layout_mode = 3
+anchor_left = 0.2
+anchor_top = 0.2
+anchor_right = 0.8
+anchor_bottom = 0.8
+script = ExtResource("1_3ruyx")
+metadata/_edit_use_custom_anchors = true
+
+[node name="Background" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.4, 0.4, 0.4, 1)
+metadata/_edit_layout_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="."]
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.05
+anchor_right = 0.95
+anchor_bottom = 0.95
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ScrollContainer"]
+offset_right = 622.08
+offset_bottom = 349.92
+size_flags_horizontal = 3
+size_flags_vertical = 3

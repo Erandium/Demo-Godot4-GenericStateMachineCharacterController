@@ -1,0 +1,183 @@
+{
+    "idle": {
+        "stateType": "idle",
+        "meshRotationSpeed": 0,
+        "conditions": [
+            {
+                "nextState": "fall",
+                "condition": {
+                    "conditionType": "not",
+                    "condition": {
+                        "conditionType": "onFloor"
+                    }
+                }
+            },
+            {
+                "nextState": "sprint",
+                "condition": {
+                    "conditionType": "or",
+                    "firstCondition": {
+                        "conditionType": "or",
+                        "firstCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_front",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        },
+                        "secondCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_back",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        }
+                    },
+                    "secondCondition": {
+                        "conditionType": "or",
+                        "firstCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_right",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        },
+                        "secondCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_left",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        }
+                    }
+                }
+            },
+            {
+                "nextState": "walk",
+                "condition": {
+                    "conditionType": "inputSetPressed",
+                    "actionList": [
+                        "player_movement_front",
+                        "player_movement_back",
+                        "player_movement_right",
+                        "player_movement_left"
+                    ]
+                }
+            }
+        ]
+    },
+    "walk": {
+        "stateType": "walkVelocity",
+        "meshRotationSpeed": 5,
+        "speed": 8,
+        "conditions": [
+            {
+                "nextState": "fall",
+                "condition": {
+                    "conditionType": "not",
+                    "condition": {
+                        "conditionType": "onFloor"
+                    }
+                }
+            },
+            {
+                "nextState": "idle",
+                "condition": {
+                    "conditionType": "not",
+                    "condition": {
+                        "conditionType": "inputSetPressed",
+                        "actionList": [
+                            "player_movement_front",
+                            "player_movement_back",
+                            "player_movement_right",
+                            "player_movement_left"
+                        ]
+                    }
+                }
+            },
+            {
+                "nextState": "sprint",
+                "condition": {
+                    "conditionType": "or",
+                    "firstCondition": {
+                        "conditionType": "or",
+                        "firstCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_front",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        },
+                        "secondCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_back",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        }
+                    },
+                    "secondCondition": {
+                        "conditionType": "or",
+                        "firstCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_right",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        },
+                        "secondCondition": {
+                            "conditionType": "inputPressed",
+                            "actionName": "player_movement_left",
+                            "doubleTap": true,
+                            "removeInput": false,
+                            "doubleTapTimeFrame": 500
+                        }
+                    }
+                }
+            }
+        ]
+    },
+    "sprint": {
+        "stateType": "walkAcceleration",
+        "meshRotationSpeed": 8,
+        "maxSpeed": 25,
+        "acceleration": 10,
+        "friction": 1,
+        "conditions": [
+            {
+                "nextState": "fall",
+                "condition": {
+                    "conditionType": "not",
+                    "condition": {
+                        "conditionType": "onFloor"
+                    }
+                }
+            },
+            {
+                "nextState": "idle",
+                "condition": {
+                    "conditionType": "maxSpeed",
+                    "maxSpeed": 8,
+                    "axe": "zx"
+                }
+            }
+        ]
+    },
+    "fall": {
+        "stateType": "airAcceleration",
+        "meshRotationSpeed": 2,
+        "horizontalMaxSpeed": 25,
+        "gravityAcceleration": 9.8,
+        "horizontalAcceleration": 0,
+        "friction": 0.2,
+        "fallMaxSpeed": 20,
+        "conditions": [
+            {
+                "nextState": "idle",
+                "condition": {
+                    "conditionType": "onFloor"
+                }
+            }
+        ]
+    }
+}

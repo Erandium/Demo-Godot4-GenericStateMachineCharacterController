@@ -1,0 +1,452 @@
+[gd_resource type="Resource" load_steps=92 format=3 uid="uid://cej30uakpf7cp"]
+
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Character3DStateMachineResource.gd" id="1_l3oll"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_OnFloor.gd" id="2_1uhjx"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_InputSetPressed.gd" id="2_8ba3p"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DStateChangeValidator.gd" id="3_i6h01"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Idle.gd" id="4_4eekp"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Walk_Acceleration.gd" id="5_565nc"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_Not.gd" id="5_kesdb"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_InputPressed.gd" id="5_kq3gx"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Air_Acceleration.gd" id="6_15x3b"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_Or.gd" id="6_e0xdq"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Jump_Acceleration.gd" id="7_mcbrg"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_MaxSpeed.gd" id="9_othf4"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_And.gd" id="10_75ck7"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Climb.gd" id="14_p0hsf"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_True.gd" id="15_ri3x7"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/StateResources/Character3DStateResource_Jump_Velocity.gd" id="16_fucy0"]
+[ext_resource type="Script" path="res://Code/GenericStatemachine/Conditions/Character3DCondition_OnWall.gd" id="17_mfg1o"]
+
+[sub_resource type="Resource" id="Resource_qm7bj"]
+script = ExtResource("2_1uhjx")
+
+[sub_resource type="Resource" id="Resource_scudg"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_qm7bj")
+
+[sub_resource type="Resource" id="Resource_ocyl4"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_scudg")
+
+[sub_resource type="Resource" id="Resource_ayykb"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_kubxg"]
+script = ExtResource("3_i6h01")
+nextStateName = "jump"
+condition = SubResource("Resource_ayykb")
+
+[sub_resource type="Resource" id="Resource_eibt6"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_front"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_urv65"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_back"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_ul6rf"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_eibt6")
+secondCondition = SubResource("Resource_urv65")
+
+[sub_resource type="Resource" id="Resource_t70ux"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_right"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_wxc6f"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_left"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_ygn1t"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_t70ux")
+secondCondition = SubResource("Resource_wxc6f")
+
+[sub_resource type="Resource" id="Resource_hd8vy"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_ul6rf")
+secondCondition = SubResource("Resource_ygn1t")
+
+[sub_resource type="Resource" id="Resource_y4vh3"]
+script = ExtResource("3_i6h01")
+nextStateName = "sprint"
+condition = SubResource("Resource_hd8vy")
+
+[sub_resource type="Resource" id="Resource_nmuvj"]
+script = ExtResource("2_8ba3p")
+actionList = ["player_movement_front", "player_movement_back", "player_movement_right", "player_movement_left"]
+
+[sub_resource type="Resource" id="Resource_65gif"]
+script = ExtResource("3_i6h01")
+nextStateName = "walk"
+condition = SubResource("Resource_nmuvj")
+
+[sub_resource type="Resource" id="Resource_bdb0f"]
+script = ExtResource("4_4eekp")
+stateName = "idle"
+meshRotationSpeed = 0
+nextStateConditionList = [SubResource("Resource_ocyl4"), SubResource("Resource_kubxg"), SubResource("Resource_y4vh3"), SubResource("Resource_65gif")]
+
+[sub_resource type="Resource" id="Resource_fqljl"]
+script = ExtResource("2_1uhjx")
+
+[sub_resource type="Resource" id="Resource_lm1uh"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_fqljl")
+
+[sub_resource type="Resource" id="Resource_nx3uu"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_lm1uh")
+
+[sub_resource type="Resource" id="Resource_mbxia"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_d5eix"]
+script = ExtResource("3_i6h01")
+nextStateName = "jump"
+condition = SubResource("Resource_mbxia")
+
+[sub_resource type="Resource" id="Resource_bjlej"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_front"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_8vgd1"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_back"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_ndrkd"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_bjlej")
+secondCondition = SubResource("Resource_8vgd1")
+
+[sub_resource type="Resource" id="Resource_d1nrd"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_right"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_45gbr"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_left"
+doubleTap = true
+doubleTapTimeFrame = 500.0
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_iquvd"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_d1nrd")
+secondCondition = SubResource("Resource_45gbr")
+
+[sub_resource type="Resource" id="Resource_q5mu8"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_ndrkd")
+secondCondition = SubResource("Resource_iquvd")
+
+[sub_resource type="Resource" id="Resource_75mvn"]
+script = ExtResource("3_i6h01")
+nextStateName = "sprint"
+condition = SubResource("Resource_q5mu8")
+
+[sub_resource type="Resource" id="Resource_kumyu"]
+script = ExtResource("9_othf4")
+speedLimit = 2.0
+axeWeight = Vector3(1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_g06j3"]
+script = ExtResource("2_8ba3p")
+actionList = ["player_movement_front", "player_movement_back", "player_movement_left", "player_movement_jump"]
+
+[sub_resource type="Resource" id="Resource_5c5e4"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_g06j3")
+
+[sub_resource type="Resource" id="Resource_l5wej"]
+script = ExtResource("10_75ck7")
+firstCondition = SubResource("Resource_kumyu")
+secondCondition = SubResource("Resource_5c5e4")
+
+[sub_resource type="Resource" id="Resource_bffb4"]
+script = ExtResource("3_i6h01")
+nextStateName = "idle"
+condition = SubResource("Resource_l5wej")
+
+[sub_resource type="Resource" id="Resource_86og0"]
+script = ExtResource("5_565nc")
+maxSpeed = 8.0
+acceleration = 10.0
+friction = 2.0
+stateName = "walk"
+meshRotationSpeed = 5.0
+nextStateConditionList = [SubResource("Resource_nx3uu"), SubResource("Resource_d5eix"), SubResource("Resource_75mvn"), SubResource("Resource_bffb4")]
+
+[sub_resource type="Resource" id="Resource_jqe3l"]
+script = ExtResource("2_1uhjx")
+
+[sub_resource type="Resource" id="Resource_kk12x"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_jqe3l")
+
+[sub_resource type="Resource" id="Resource_q8hrw"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_kk12x")
+
+[sub_resource type="Resource" id="Resource_cl3ad"]
+script = ExtResource("9_othf4")
+speedLimit = 2.0
+axeWeight = Vector3(1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_1qxjy"]
+script = ExtResource("2_8ba3p")
+actionList = ["player_movement_front", "player_movement_right", "player_movement_back", "player_movement_left"]
+
+[sub_resource type="Resource" id="Resource_u2ve5"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_1qxjy")
+
+[sub_resource type="Resource" id="Resource_fgjpn"]
+script = ExtResource("10_75ck7")
+firstCondition = SubResource("Resource_cl3ad")
+secondCondition = SubResource("Resource_u2ve5")
+
+[sub_resource type="Resource" id="Resource_75brp"]
+script = ExtResource("3_i6h01")
+nextStateName = "idle"
+condition = SubResource("Resource_fgjpn")
+
+[sub_resource type="Resource" id="Resource_mhmcc"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_s6wn7"]
+script = ExtResource("3_i6h01")
+nextStateName = "jump"
+condition = SubResource("Resource_mhmcc")
+
+[sub_resource type="Resource" id="Resource_uhiud"]
+script = ExtResource("5_565nc")
+maxSpeed = 25.0
+acceleration = 20.0
+friction = 2.0
+stateName = "sprint"
+meshRotationSpeed = 8.0
+nextStateConditionList = [SubResource("Resource_q8hrw"), SubResource("Resource_75brp"), SubResource("Resource_s6wn7")]
+
+[sub_resource type="Resource" id="Resource_b2hiw"]
+script = ExtResource("2_1uhjx")
+
+[sub_resource type="Resource" id="Resource_st8yu"]
+script = ExtResource("3_i6h01")
+nextStateName = "idle"
+condition = SubResource("Resource_b2hiw")
+
+[sub_resource type="Resource" id="Resource_pbk4w"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_exev4"]
+script = ExtResource("3_i6h01")
+nextStateName = "jump"
+condition = SubResource("Resource_pbk4w")
+
+[sub_resource type="Resource" id="Resource_oenwh"]
+script = ExtResource("17_mfg1o")
+
+[sub_resource type="Resource" id="Resource_pfvy4"]
+script = ExtResource("3_i6h01")
+nextStateName = "climb"
+condition = SubResource("Resource_oenwh")
+
+[sub_resource type="Resource" id="Resource_fr47f"]
+script = ExtResource("6_15x3b")
+horizontalMaxSpeed = 25.0
+fallMaxSpeed = 20.0
+horizontalAcceleration = 2.0
+gravityAcceleration = 9.8
+friction = 0.2
+stateName = "fall"
+meshRotationSpeed = 0.5
+nextStateConditionList = [SubResource("Resource_st8yu"), SubResource("Resource_exev4"), SubResource("Resource_pfvy4")]
+
+[sub_resource type="Resource" id="Resource_khubq"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = false
+
+[sub_resource type="Resource" id="Resource_1etkv"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_khubq")
+
+[sub_resource type="Resource" id="Resource_rg6l0"]
+script = ExtResource("9_othf4")
+speedLimit = 1.0
+axeWeight = Vector3(0, 1, 0)
+
+[sub_resource type="Resource" id="Resource_hndqf"]
+script = ExtResource("6_e0xdq")
+firstCondition = SubResource("Resource_1etkv")
+secondCondition = SubResource("Resource_rg6l0")
+
+[sub_resource type="Resource" id="Resource_70pnp"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_hndqf")
+
+[sub_resource type="Resource" id="Resource_qddfw"]
+script = ExtResource("7_mcbrg")
+jumpImpulse = Vector3(0, 6, 0)
+jumpCount = 1
+jumpCooldown = 0
+resetJumpCountOnFloor = true
+resetJumpCountOnWall = false
+resetJumpCountOnCooldown = false
+variableJump = true
+variableJumpFactor = 2
+horizontalMaxSpeed = 25.0
+fallMaxSpeed = 20.0
+horizontalAcceleration = 1.0
+gravityAcceleration = 9.8
+friction = 0.2
+stateName = "jump"
+meshRotationSpeed = 2.0
+nextStateConditionList = [SubResource("Resource_70pnp")]
+
+[sub_resource type="Resource" id="Resource_w1e2b"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_down"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = true
+
+[sub_resource type="Resource" id="Resource_qh54o"]
+script = ExtResource("3_i6h01")
+nextStateName = "climbExit"
+condition = SubResource("Resource_w1e2b")
+
+[sub_resource type="Resource" id="Resource_tlbin"]
+script = ExtResource("5_kq3gx")
+actionName = "player_movement_jump"
+doubleTap = false
+doubleTapTimeFrame = null
+removeInput = true
+
+[sub_resource type="Resource" id="Resource_h15we"]
+script = ExtResource("3_i6h01")
+nextStateName = "climbJump"
+condition = SubResource("Resource_tlbin")
+
+[sub_resource type="Resource" id="Resource_m8vuq"]
+script = ExtResource("17_mfg1o")
+
+[sub_resource type="Resource" id="Resource_3rija"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_m8vuq")
+
+[sub_resource type="Resource" id="Resource_nmn05"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_3rija")
+
+[sub_resource type="Resource" id="Resource_ibc4w"]
+script = ExtResource("14_p0hsf")
+verticalClimbSpeed = 6.0
+horizontalClimbSpeed = 4.0
+stateName = "climb"
+meshRotationSpeed = 10.0
+nextStateConditionList = [SubResource("Resource_qh54o"), SubResource("Resource_h15we"), SubResource("Resource_nmn05")]
+
+[sub_resource type="Resource" id="Resource_anbmk"]
+script = ExtResource("9_othf4")
+speedLimit = 1.0
+axeWeight = Vector3(1, 0, 1)
+
+[sub_resource type="Resource" id="Resource_gf843"]
+script = ExtResource("5_kesdb")
+condition = SubResource("Resource_anbmk")
+
+[sub_resource type="Resource" id="Resource_su66b"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_gf843")
+
+[sub_resource type="Resource" id="Resource_ldwws"]
+script = ExtResource("16_fucy0")
+jumpImpulse = Vector3(-5, 0, 0)
+jumpCount = 1
+jumpCooldown = 0
+resetJumpCountOnFloor = false
+resetJumpCountOnWall = false
+resetJumpCountOnCooldown = true
+variableJump = false
+variableJumpFactor = 2
+horizontalMovementSpeed = 2.0
+gravityAcceleration = 9.8
+stateName = "climbExit"
+meshRotationSpeed = 0
+nextStateConditionList = [SubResource("Resource_su66b")]
+
+[sub_resource type="Resource" id="Resource_uedie"]
+script = ExtResource("15_ri3x7")
+
+[sub_resource type="Resource" id="Resource_gqfop"]
+script = ExtResource("3_i6h01")
+nextStateName = "fall"
+condition = SubResource("Resource_uedie")
+
+[sub_resource type="Resource" id="Resource_cee5c"]
+script = ExtResource("16_fucy0")
+jumpImpulse = Vector3(1, 1, 0)
+jumpCount = 1
+jumpCooldown = 0
+resetJumpCountOnFloor = false
+resetJumpCountOnWall = false
+resetJumpCountOnCooldown = true
+variableJump = true
+variableJumpFactor = 2
+horizontalMovementSpeed = 0
+gravityAcceleration = 9.8
+stateName = "climbTopCliff"
+meshRotationSpeed = 0
+nextStateConditionList = [SubResource("Resource_gqfop")]
+
+[resource]
+script = ExtResource("1_l3oll")
+stateList = [SubResource("Resource_bdb0f"), SubResource("Resource_86og0"), SubResource("Resource_uhiud"), SubResource("Resource_fr47f"), SubResource("Resource_qddfw"), SubResource("Resource_ibc4w"), SubResource("Resource_ldwws"), SubResource("Resource_cee5c")]

@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://cy3lf8drssyxh"]
+
+[ext_resource type="Script" path="res://Code/game_manager.gd" id="1_euteh"]
+[ext_resource type="PackedScene" uid="uid://dcgedr3l4ghlh" path="res://Code/Input/InputMenu/input_setting_menu.tscn" id="2_qj05j"]
+[ext_resource type="PackedScene" uid="uid://bou515cu0da2d" path="res://Code/World/world.tscn" id="3_6ll0x"]
+[ext_resource type="PackedScene" uid="uid://h27pshcdlrxa" path="res://Code/Player/player.tscn" id="4_jb43i"]
+
+[node name="GameManager" type="Node"]
+script = ExtResource("1_euteh")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="InputSettingMenu" parent="CanvasLayer" instance=ExtResource("2_qj05j")]
+
+[node name="World" parent="." instance=ExtResource("3_6ll0x")]
+
+[node name="Player" parent="." instance=ExtResource("4_jb43i")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.81731, 4.75826)
+
+[connection signal="close_menu" from="CanvasLayer/InputSettingMenu" to="." method="_on_input_setting_menu_close_menu"]

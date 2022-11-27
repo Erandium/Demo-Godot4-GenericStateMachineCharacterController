@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://bou515cu0da2d"]
+
+[sub_resource type="Gradient" id="Gradient_s5ik6"]
+offsets = PackedFloat32Array(0, 0.0271003, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0277024, 0.300781, 0.0625599, 1, 0.0921015, 1, 0.207991, 1)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_cpakj"]
+noise_type = 0
+frequency = 0.045
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ka0cs"]
+color_ramp = SubResource("Gradient_s5ik6")
+noise = SubResource("FastNoiseLite_cpakj")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_yqgmk"]
+albedo_color = Color(0.223529, 0.866667, 0.25098, 1)
+albedo_texture = SubResource("NoiseTexture2D_ka0cs")
+
+[sub_resource type="BoxMesh" id="BoxMesh_6wohk"]
+material = SubResource("StandardMaterial3D_yqgmk")
+
+[sub_resource type="PrismMesh" id="PrismMesh_s5qn3"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ujjcs"]
+
+[node name="World" type="Node3D"]
+
+[node name="Ground" type="CSGMesh3D" parent="."]
+transform = Transform3D(330.814, 0, 0, 0, 3.24144, 0, 0, 0, 310.922, 0, 0, 0)
+use_collision = true
+mesh = SubResource("BoxMesh_6wohk")
+
+[node name="Slope1" type="CSGMesh3D" parent="."]
+transform = Transform3D(61.6578, 0, 0, 0, 11.5518, 0, 0, 0, 11.344, 0.0483279, 6.08813, -6.00419)
+use_collision = true
+mesh = SubResource("PrismMesh_s5qn3")
+
+[node name="Slope2" type="CSGMesh3D" parent="."]
+transform = Transform3D(12.8854, 0, 0, 0, 22.8878, 0, 0, 0, 12.2585, 0.0483279, 12.4794, -18.7012)
+use_collision = true
+mesh = SubResource("PrismMesh_s5qn3")
+
+[node name="Wall1" type="CSGMesh3D" parent="."]
+transform = Transform3D(0.130738, 0, 0, 0, 43.375, 0, 0, 0, 10.1692, 1.22543, 4.98621, -30.1735)
+use_collision = true
+mesh = SubResource("BoxMesh_ujjcs")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.90941, -0.356069, 0.214913, 0, 0.516743, 0.856141, -0.4159, -0.778583, 0.469931, 26.8552, 60.199, 76.5168)
+shadow_enabled = true

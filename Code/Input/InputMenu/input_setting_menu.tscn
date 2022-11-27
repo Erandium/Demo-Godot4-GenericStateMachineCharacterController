@@ -1,0 +1,82 @@
+[gd_scene load_steps=4 format=3 uid="uid://dcgedr3l4ghlh"]
+
+[ext_resource type="Script" path="res://Code/Input/InputMenu/input_setting_menu.gd" id="1_ob61o"]
+[ext_resource type="PackedScene" uid="uid://cq3y1rxca41cu" path="res://Code/Input/InputMenu/input_mapping_menu.tscn" id="2_4v371"]
+[ext_resource type="PackedScene" uid="uid://55sw2qf55vpp" path="res://Code/Input/InputMenu/input_sensibility_menu.tscn" id="3_sf8ox"]
+
+[node name="InputSettingMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ob61o")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 0.1
+text = "Input Settings"
+horizontal_alignment = 1
+vertical_alignment = 1
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="MappingButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.1
+anchor_right = 0.45
+anchor_bottom = 0.18
+text = "Input Mapping"
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="SensibilityButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.1
+anchor_right = 0.75
+anchor_bottom = 0.18
+text = "Input Sensibility"
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="InputMappingMenu" parent="." instance=ExtResource("2_4v371")]
+layout_mode = 1
+
+[node name="InputSensibilityMenu" parent="." instance=ExtResource("3_sf8ox")]
+layout_mode = 1
+
+[node name="SaveButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.25
+anchor_top = 0.82
+anchor_right = 0.45
+anchor_bottom = 0.9
+text = "Save
+"
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[node name="CancelButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.55
+anchor_top = 0.82
+anchor_right = 0.75
+anchor_bottom = 0.9
+text = "Cancel
+"
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = true
+
+[connection signal="pressed" from="MappingButton" to="." method="_on_mapping_button_pressed"]
+[connection signal="pressed" from="SensibilityButton" to="." method="_on_sensibility_button_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
+[connection signal="pressed" from="CancelButton" to="." method="_on_cancel_button_pressed"]
