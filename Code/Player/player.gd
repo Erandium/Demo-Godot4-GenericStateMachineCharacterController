@@ -8,7 +8,7 @@ func _ready() -> void:
 	inputBufferManager = $InputBufferManager
 	bodyPivot = $BodyPivot
 	cameraRig.player = self
-	Init("Player")
+	Init()
 
 
 func _process(delta: float) -> void:
