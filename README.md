@@ -5,7 +5,9 @@ This project generate a state machine based character 3D controller from a resou
 
 The project comes with 8 implemented states and 2 examples (1 file and 1 resource) for a player character controller. 
 
-The project is developed on Godot 4 beta 4
+The project is developed on Godot 4 beta 4.
+
+To open the input map, press "ESC". 
 
 ---
 ---
