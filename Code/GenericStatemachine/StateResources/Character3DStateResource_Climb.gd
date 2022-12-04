@@ -9,7 +9,7 @@ class_name Character3DStateResourceClimb
 
 
 func _init() -> void:
-	script = load("res://Code/GenericStatemachine/States/Character3DState_Climb.gd")
+	stateScript = load("res://Code/GenericStatemachine/States/Character3DState_Climb.gd")
 
 func FromJson(data : Dictionary) -> void:
 	super.FromJson(data)

@@ -33,6 +33,7 @@ maxVerticalAngle = 40.0
 minVerticalAngle = -40.0
 
 [node name="GenericStateManager" parent="." instance=ExtResource("2_mbbaj")]
+dataSource = 0
 stateMachineFilePath = "res://Data/StateMachines/Player.json"
 stateMachineResource = ExtResource("4_lnx07")
 

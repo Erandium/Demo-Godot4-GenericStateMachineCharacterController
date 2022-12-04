@@ -10,11 +10,11 @@ class_name BaseCharacter3DStateResource
 @export var nextStateConditionList : Array[Character3DStateChangeValidator] = []
 
 ##Script to add to the node when creating the state machine
-var script
+var stateScript
 
 func _init() -> void:
 	#assign the corresponding script
-	script = load("res://Code/GenericStatemachine/States/BaseCharacter3DState.gd")
+	stateScript = load("res://Code/GenericStatemachine/States/BaseCharacter3DState.gd")
 
 ##Load data from json
 func FromJson(data : Dictionary) -> void:

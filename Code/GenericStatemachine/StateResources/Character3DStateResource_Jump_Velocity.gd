@@ -27,7 +27,7 @@ class_name Character3DStateResourceJumpVelocity
 @export var gravityAcceleration : float = 9.8
 
 func _init() -> void:
-	script = load("res://Code/GenericStatemachine/States/Character3DState_Jump_Velocity.gd")
+	stateScript = load("res://Code/GenericStatemachine/States/Character3DState_Jump_Velocity.gd")
 
 func FromJson(data : Dictionary) -> void:
 	super.FromJson(data)

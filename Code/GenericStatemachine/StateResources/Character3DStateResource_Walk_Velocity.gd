@@ -6,7 +6,7 @@ class_name Character3DStateResourceWalkVelocity
 @export var speed : float = 0
 
 func _init() -> void:
-	script = load("res://Code/GenericStatemachine/States/Character3DState_Walk_Velocity.gd")
+	stateScript = load("res://Code/GenericStatemachine/States/Character3DState_Walk_Velocity.gd")
 
 func FromJson(data : Dictionary) -> void:
 	super.FromJson(data)

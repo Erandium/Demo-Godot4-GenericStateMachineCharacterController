@@ -157,8 +157,12 @@
                 "nextState": "idle",
                 "condition": {
                     "conditionType": "maxSpeed",
-                    "maxSpeed": 8,
-                    "axe": "zx"
+                    "speedLimit": 8,
+                    "axeWeight": {
+                        "x": 1,
+                        "y": 0,
+                        "z": 1
+                    }
                 }
             }
         ]

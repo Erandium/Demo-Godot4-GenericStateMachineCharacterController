@@ -39,7 +39,7 @@ func Init(entity : Character3DEntity) -> void:
 	#generate the node for the state machine
 	for state in stateResourceList:
 		var node : Node = Node.new()
-		node.set_script(state.script)
+		node.set_script(state.stateScript)
 		(node as BaseCharacter3DState).entity = entity
 		(node as BaseCharacter3DState).SetStateData(state)
 		add_child(node)
@@ -95,6 +95,11 @@ func _LoadStateMachine(stateMachineFilePath : String) -> Array[BaseCharacter3DSt
 				stateList.append(stateResource)
 			"idle":
 				var stateResource := Character3DStateResourceIdle.new()
+				stateResource.stateName = stateName
+				stateResource.FromJson(stateData)
+				stateList.append(stateResource)
+			"climb":
+				var stateResource := Character3DStateResourceClimb.new()
 				stateResource.stateName = stateName
 				stateResource.FromJson(stateData)
 				stateList.append(stateResource)

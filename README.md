@@ -16,6 +16,11 @@ The project is developed on Godot 4 beta 4
 - The  project use an input buffer from an other project. 
 - The naming nomenclature is closer to C# than to python
 
+If when loading the project, you can't launch it because of cyclic dependencies:
+- Remove the ": Character3DEntity" in the argument of Evaluate function from **BaseCharacter3DCondition** and **Character3DStateChangeValidator**
+- Reload the project (Project>Reload current project)
+- Put back the ": Character3DEntity" (if needed)
+
 ---
 ---
 

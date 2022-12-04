@@ -15,7 +15,7 @@ class_name Character3DStateResourceAirAcceleration
 
 
 func _init() -> void:
-	script = load("res://Code/GenericStatemachine/States/Character3DState_Air_Acceleration.gd")
+	stateScript = load("res://Code/GenericStatemachine/States/Character3DState_Air_Acceleration.gd")
 
 func FromJson(data : Dictionary) -> void:
 	super.FromJson(data)
